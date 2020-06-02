@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/pizzas', function () {
+    $pizza = [
+        'type' => 'hawaiian',
+        'base' => 'cheese',
+        'price' => 3
+    ];
+
+    return view('pizzas', $pizza);
+});
