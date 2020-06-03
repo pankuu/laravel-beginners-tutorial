@@ -26,7 +26,7 @@ class AddPriceToPizzasTable extends Migration
     public function down()
     {
         Schema::table('pizzas', function (Blueprint $table) {
-            //
+            $table->integer('price');
         });
     }
 }
