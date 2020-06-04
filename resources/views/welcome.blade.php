@@ -10,6 +10,7 @@
         <p class="mssg">{{ session('mssg') }}</p>
         <div class="links">
             <a href="/pizzas/create">Order a pizza</a>
+            <a href="/pizzas">Pizzas list order</a>
         </div>
     </div>
 </div>

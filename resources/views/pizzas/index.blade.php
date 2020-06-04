@@ -6,12 +6,12 @@
             <div class="title m-b-md">
                 Pizza List
             </div>
+            <p class="mssg">{{ session('mssg') }}</p>
             @foreach($pizzas as $pizza)
                 <div>
-                    {{ $pizza->name }} - {{ $pizza->type }} - {{ $pizza->base }}
+                    <a href="/pizzas/{{ $pizza->id }}">{{ $pizza->name }} - {{ $pizza->type }} - {{ $pizza->base }}</a>
                 </div>
             @endforeach
-
         </div>
     </div>
 @endsection

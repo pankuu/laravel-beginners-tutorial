@@ -7,6 +7,9 @@ use App\Pizza;
 
 class PizzaController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $pizzas = Pizza::latest()->get();
@@ -16,6 +19,10 @@ class PizzaController extends Controller
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id)
     {
         $pizza = Pizza::findOrFail($id);
@@ -23,11 +30,17 @@ class PizzaController extends Controller
         return view('pizzas.show', ['pizza' => $pizza]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         return view('pizzas.create');
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store()
     {
         $pizza = new Pizza();
@@ -40,5 +53,17 @@ class PizzaController extends Controller
         $pizza->save();
 
         return redirect('/')->with('mssg', 'Thanks for your order');
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy($id)
+    {
+        $pizza = Pizza::findOrFail($id);
+        $pizza->delete();
+
+        return redirect('/pizzas')->with('mssg', "Completed order for: $pizza->name");
     }
 }
